@@ -2,14 +2,15 @@ import mongoose from "mongoose";
 import chalk from "chalk";
 import "dotenv/config";
 
-// DB Connection
+
 const connectDb = async () => {
   let connectionString = process.env.DB_PROTOCOL;
   if (process.env.DB_USER && process.env.DB_PASS) {
     connectionString += `${process.env.DB_USER}:${process.env.DB_PASS}@`;
   }
   connectionString += `${process.env.DB_HOST}/${process.env.DB_NAME}`;
-
+  
+  console.log("🔗 Connection string:", connectionString);
   mongoose
     .connect(`${connectionString}?retryWrites=true&w=majority`, {
       useNewUrlParser: true,
